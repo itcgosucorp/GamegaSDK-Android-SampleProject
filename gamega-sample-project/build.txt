@@ -1,0 +1,2 @@
+gradlew :gasdk:assembleRelease
+gradlew :gasdk:assembleDebug

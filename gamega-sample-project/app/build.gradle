@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+android {
+    compileSdk 34
+    buildToolsVersion "30.0.3"
+    defaultConfig {
+        applicationId "vn.gosu.cuuam2d"
+        minSdkVersion 23
+        targetSdk 34
+        versionCode 8
+        versionName "1.0.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    // Add this section
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:deprecation"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+repositories {
+    maven { url 'https://www.zetetic.net/maven' }
+    // other repositories
+}
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'com.google.android.material:material:1.9.0' // Material Components dependency
+    implementation 'com.android.support:design:28.0.0'
+    //add library
+    //for showLogin facebook sdk
+    implementation 'com.facebook.android:facebook-login:latest.release'
+    //for in app billing
+    implementation 'com.android.billingclient:billing:6.0.1'
+    implementation 'com.google.guava:guava:31.1-android'
+    //for sigin GG SDK
+    implementation 'com.google.android.gms:play-services-auth:21.2.0'
+    //for firebase
+    implementation platform('com.google.firebase:firebase-bom:31.1.0')
+    implementation("com.google.firebase:firebase-analytics")
+    implementation 'com.google.firebase:firebase-messaging:23.2.1'
+    implementation("com.google.firebase:firebase-crashlytics")
+
+    // biometric
+    //implementation "androidx.biometric:biometric:1.1.0"
+
+    //for gasdk & its_sdk
+    implementation 'io.grpc:grpc-okhttp:1.57.1'
+    implementation 'io.grpc:grpc-protobuf-lite:1.57.1'
+    implementation 'io.grpc:grpc-stub:1.57.1'
+    compileOnly 'org.apache.tomcat:annotations-api:6.0.53'
+    //
+    implementation("com.google.android.play:review:2.0.1")
+    implementation "net.zetetic:sqlcipher-android:4.5.6@aar"
+    implementation "androidx.sqlite:sqlite:2.3.1"
+    implementation 'androidx.lifecycle:lifecycle-process:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-common:2.6.1'
+    implementation 'androidx.browser:browser:1.8.0'
+    implementation 'com.rudderstack.android.sdk:core:1.25.1'
+    implementation files('libs/gasdk-release.aar')
+    implementation files('libs/its-sdk.aar')
+}

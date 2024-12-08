@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1020968750594",
+    "project_id": "cack2d",
+    "storage_bucket": "cack2d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020968750594:android:d78231560ed9d861b2611b",
+        "android_client_info": {
+          "package_name": "vn.gosu.cuuam2d"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNtCgoM-eGytF4k8ZgDbgcTOYUVlc5HjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

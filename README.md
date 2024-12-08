@@ -8,7 +8,7 @@ GameGaSDK SampleProject for Android
 INSTALLATION
 ------------
 
-**Download the official version: [click here](https://github.com/GaSDK/android-gasdk/releases)**
+**Download the official version: [click here](xxxxxxx)**
 
 #### 1. In your root-level (project-level) Gradle file `<project>/build.gradle`, add more plugins dependency to your `build.gradle` file:
 
@@ -35,8 +35,6 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 dependencies {
     // ...
-    // GaSDK
-    implementation files('libs/gasdk.aar')
     //for in app billing
     implementation 'com.android.billingclient:billing:6.1.0'
     //for showLogin facebook sdk
@@ -55,6 +53,12 @@ dependencies {
     implementation 'io.grpc:grpc-protobuf-lite:1.57.1'
     implementation 'io.grpc:grpc-stub:1.57.1'
     compileOnly 'org.apache.tomcat:annotations-api:6.0.53'
+    // for GaSDK and ItsSDK
+    implementation 'com.rudderstack.android.sdk:core:1.25.1'
+    implementation("com.google.android.play:review:2.0.1")
+    implementation 'androidx.browser:browser:1.8.0'
+    api files('libs/gasdk.aar')
+    api files('libs/its-sdk.aar')
 }
 ```	
 **-Move config file (google-services.json) into the module (app-level) root directory of your app.**
@@ -66,15 +70,17 @@ app/
 **- Add ga-service.json file to folder main/assets**
 ```json
 {
-  "client_id": "",
+ "client_id": "sample_client_id",
+ "its_app_write_key": "sample_write_key",
+ "its_app_signing_key": "sample_signing_key"
 }
 ```
 #### 4. Edit Your Resources and Manifest
 **- Open the /app/res/values/strings.xml file.**
 ```xml
-<string name="facebook_app_id">1234</string>
-<string name="fb_login_protocol_scheme">fb1234</string>
-<string name="facebook_client_token">56789</string>
+<string name="facebook_app_id">sample_facebook_app_id</string>
+<string name="fb_login_protocol_scheme">sample_fb_login_protocol_scheme</string>
+<string name="facebook_client_token">sample_facebook_client_token</string>
 ```
 **-Open the /app/manifest/AndroidManifest.xml file.**
 ```xml
@@ -168,9 +174,9 @@ GaSDK.logout();
 ```java
 public void call_billing()
 {
-    String serverID       = "S1";
-    String characterID    = "123457";
-    String characterName    = "Character_ID (&%#^Ashjba";
+    String serverID       = "sample_serverId";
+    String characterID    = "sample_chareacer_id";
+    String characterName    = "sample_character_name";
 
     GaSDK.showTopUp(serverID, characterID, characterName);
 
