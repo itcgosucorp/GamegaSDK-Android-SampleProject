@@ -189,19 +189,65 @@ public void call_billing()
 ```
 USAGE TRACKING
 --------------------
+GaSdk supports 2 types of tracking event logs:
+- Automation tracking based on the life cycle of the application including:
+    + Application Installed
+    + Application Opened
+    + Application Updated
+    + Application Backgrounded
+- Recommended gaming app events:
 
 ```java
-GTrackingManger.getInstance().trackingStartTrial();
-GTrackingManger.getInstance().trackingTutorialCompleted();
+// Very Install event
+// The event is called automatically when the SDK is integrated into the application, you don't need to call it actively
+GTrackingManger.getInstance().trackingShowSignInSDK();
+
+// Signin event
+// Events are tracked automatically when the user logs in to the SDK, you don't need to call it directly
+GTrackingManger.getInstance().trackingSignIn(String userId, String username, String email);
+
+// Tracking user created New Roles (Character) event
 GTrackingManger.getInstance().doneNRU(
         "server_id",
         "role_id",
         "Role Name"
 );
-/* custom event */
-GTrackingManger.getInstance().trackingEvent("level_20");
-GTrackingManger.getInstance().trackingEvent("level_20", "{\"customer_id\":\"1234\"}");
-/* example: 
+
+// Tracking user enter game event
+GTrackingManger.getInstance().trackEnterGameEvent(String userId, String characterId, String characterName, String serverInfo);
+
+// Tracking user start tutorial event
+GTrackingManger.getInstance().trackingStartTrial();
+
+// Tracking user completes tutorial event
+GTrackingManger.getInstance().trackingTutorialCompleted();
+
+// Tracking user's achieved level
+GTrackingManger.getInstance().level(Integer level);
+
+// Tracking user's VIP level
+GTrackingManger.getInstance().vip(Integer vipLevel);
+
+// Tracking user actitivy result's event
+GTrackingManger.getInstance().trackActivityEvent(String userId, String characterId, String serverInfo, String activitiyID, String activityResult);
+
+// Tracking item is used event
+GTrackingManger.getInstance().trackUseItemEvent(String userId, String characterId, String serverInfo, String itemId, Integer quantity);
+
+// Tracking checkout event
+// Events are tracked automatically when the user checks out in the SDK, you don't need to call it directly
+GTrackingManger.getInstance().checkout(String orderId, String productId, String amount, String currency, String customerId);
+
+// Tracking purchase event
+// Events are tracked automatically when the user checks out in the SDK, you don't need to call it directly
+GTrackingManger.getInstance().purchase(String orderId, String productId, String amount, String currency, String customerId);
+
+// Track logout event
+// Events are tracked automatically when the user logs out of the SDK, you don't need to call it directly
+GTrackingManger.getInstance().trackLogoutEvent();
+
+// Custom Event
+/* Example: 
 jsonContent = {"event": "event_name", "params": {"key": "value", "key2": "value2"} }
 */
 JSONObject jsonContent = new JSONObject();
@@ -209,3 +255,5 @@ jsonRole.put("character", "CharacterName");
 jsonRole.put("server", "ServerID");        
 GTrackingManger.getInstance().trackingEvent("event_name", jsonContent);
 ```
+
+
