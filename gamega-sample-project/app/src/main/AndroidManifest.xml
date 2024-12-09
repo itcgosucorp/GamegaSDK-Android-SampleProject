@@ -9,6 +9,9 @@
     <!-- use for iab -->
     <uses-permission android:name="com.android.vending.BILLING" />
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
     <!-- Step 1: Add the following permission to the app  -->
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
@@ -67,6 +70,10 @@
         <meta-data
             android:name="com.facebook.sdk.ClientToken"
             android:value="@string/facebook_client_token" />
+
+        <provider android:authorities="com.facebook.app.FacebookContentProvider116350609033094"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
 
 
 
