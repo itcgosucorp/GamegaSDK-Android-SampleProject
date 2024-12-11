@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name" translatable="false">GaSDKv1 Demo</string>
+
+    <string name="vaogame" translatable="false">Play Game</string>
+    <string name="facebook_app_id" translatable="false">8170864146280686</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb8170864146280686</string>
+    <string name="facebook_client_token" translatable="false">d4c6dcaa32a067121b915c034f895b52</string>
+</resources>

@@ -1,0 +1,3 @@
+//include ':gasdk'
+include ':app'
+rootProject.name = "gasdk_v1"
