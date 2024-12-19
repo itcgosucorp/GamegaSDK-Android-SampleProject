@@ -54,9 +54,13 @@ dependencies {
     implementation 'io.grpc:grpc-stub:1.57.1'
     compileOnly 'org.apache.tomcat:annotations-api:6.0.53'
     // for GaSDK and ItsSDK
-    implementation 'com.rudderstack.android.sdk:core:1.25.1'
-    implementation("com.google.android.play:review:2.0.1")
+    implementation 'androidx.core:core:1.10.1'
+    implementation "net.zetetic:sqlcipher-android:4.5.6@aar"
+    implementation "androidx.sqlite:sqlite:2.3.1"
+    implementation 'androidx.lifecycle:lifecycle-process:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-common:2.6.1'
     implementation 'androidx.browser:browser:1.8.0'
+    implementation 'com.rudderstack.android.sdk:core:1.25.1'
     api files('libs/gasdk.aar')
     api files('libs/its-sdk.aar')
 }
