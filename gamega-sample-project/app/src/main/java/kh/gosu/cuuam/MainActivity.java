@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import java.net.URLEncoder;
 import java.util.Locale;
+
 import android.app.Activity;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btnTTITEM1;
     private Button btnReview;
     private Button btnDangXuat;
-
 
 
     @Override
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setupSDK() {
         //
-        GaSDK.sdkInitialize(this,  new IGameInitListener() {
+        GaSDK.sdkInitialize(this, new IGameInitListener() {
             @Override
             public void onSuccess() {
 
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     Activity mActivity;
+
     private void onLogin() {
         mActivity = this;
         GaSDK.onLogin(new IGameOauthListener() {
@@ -110,9 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 btnReview.setVisibility(View.GONE);
                 btnDangXuat.setVisibility(View.GONE);
                 btnDangNhap.setVisibility(View.VISIBLE);
-
                 GameConstant.fbAllow = true;
-//                GaSDK.showLogin();
             }
 
             @Override
@@ -137,47 +136,28 @@ public class MainActivity extends AppCompatActivity {
         btnDSITEM.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View view) {
-                for(int i = 0; i < GameConstant.iap_product_ids.size(); i++){
-                    Log.d("TAG_ITEM", GameConstant.iap_product_ids.get(i)+"");
+                for (int i = 0; i < GameConstant.iap_product_ids.size(); i++) {
+                    Log.d("TAG_ITEM", GameConstant.iap_product_ids.get(i) + "");
                 }
             }
         });
-
 
 
         btnTTITEM1 = (Button) findViewById(R.id.btnTTITEM1);
         btnTTITEM1.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View var1) {
-                //Log.d("T11", GameSDK.version());
-//                if(GameConstant.iap_product_ids.size() <= 0) return;
-                //Log.d("SDK", GameConstant.iap_product_ids.get(0)); "android.test.purchased";
-//                Log.d("SDK", GameConstant.iap_product_ids.get(0)+"");
                 String productID = "com.idolnrt.gift.0.99";
                 String mProductName = "Mua gói 100KNB";
                 String currencyUnit = "USD";
                 String amount = "0.99";
-                String serverID       = "10001";
-                String characterID    = "123457";
-                String characterName    = "Character_ID (&%#^Ashjba";
-                String orderID    = "Character_ID";
-                String extraInfo    = "";
+                String serverID = "10001";
+                String characterID = "123457";
+                String characterName = "Character_ID (&%#^Ashjba";
+                String orderID = "Character_ID";
+                String extraInfo = "";
                 GameItemIAPObject gosuItemIAPObject = new GameItemIAPObject(orderID, productID, mProductName, currencyUnit, amount, serverID, characterID, extraInfo);
-
                 GaSDK.showTopUp(serverID, characterID, characterName);
-                /*GaSDK.payment(gosuItemIAPObject, new IGamePaymentListener() {
-                    @Override
-                    public void onPaymentSuccess(String message) {
-                        Log.d("T123", message);
-                        showMessage(message);
-                    }
-
-                    @Override
-                    public void onPaymentError(String message) {
-                        Log.d("T123", message);
-                        showMessage(message);
-                    }
-                });*/
             }
         });
         btnReview = (Button) findViewById(R.id.btn_show_review);
@@ -220,8 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void showMessage(String message)
-    {
+    public void showMessage(String message) {
         Activity activity = this;
         this.runOnUiThread(new Runnable() {
             @Override
@@ -233,19 +212,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    protected void callTrackingExample()
-    {
-        GTrackingManger.getInstance().trackingEvent("level_20");
-        GTrackingManger.getInstance().trackingStartTrial();
-        GTrackingManger.getInstance().trackingTutorialCompleted();
-        GTrackingManger.getInstance().doneNRU(
-            "Server 001",
-            "role 001",
-            "Role Name"
-        );
-        /* custom event */
-        GTrackingManger.getInstance().vip(100);
+
+    protected void callTrackingExample() {
+        String ServerID = "ServerTest_001";
+        String CharId = "CharId_001";
+        String CharName = "CharName_001";
+        String OrderID = "OrderID_001";
+
+        GTrackingManger.getInstance().createNewCharacter(ServerID, CharId, CharName);
+        GTrackingManger.getInstance().enterGame(GameConstant.response_userid, CharId, CharName, ServerID);
+        GTrackingManger.getInstance().startTutorial(GameConstant.response_userid, CharId, CharName, ServerID);
+        GTrackingManger.getInstance().completeTutorial(GameConstant.response_userid, CharId, CharName, ServerID);
+        GTrackingManger.getInstance().checkout(OrderID, "com.toantest.gamega.001", "1000", "VND", GameConstant.response_userid);
+        GTrackingManger.getInstance().purchase(OrderID, "com.toantest.gamega.001", "1000", "VND", GameConstant.response_userid);
         GTrackingManger.getInstance().level(100);
+        GTrackingManger.getInstance().vip(1);
+        GTrackingManger.getInstance().useItem(GameConstant.response_userid, CharId, ServerID, "ItemID_001", 1);
+        GTrackingManger.getInstance().trackActivityResult(GameConstant.response_userid, CharId, ServerID, "ActivityID_001", "done");
+        try {
+            JSONObject object = new JSONObject();
+            object.put("role_id", "role custom");
+            object.put("data_test", "crash077777");
+            object.put("number_test", 100);
+            GTrackingManger.getInstance().trackCustomEvent("event_toan_custom", object);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -276,7 +268,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d("Deeplink URL", "No data received in Intent");
         }
     }
-
 
 
 }

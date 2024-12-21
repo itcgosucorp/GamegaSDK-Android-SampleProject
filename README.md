@@ -8,7 +8,7 @@ GameGaSDK SampleProject for Android
 INSTALLATION
 ------------
 
-**Download the official version: [click here](xxxxxxx)**
+**Download the official version: [click here](https://github.com/itcgosucorp/GamegaSDK-Android-SampleProject/releases)**
 
 #### 1. In your root-level (project-level) Gradle file `<project>/build.gradle`, add more plugins dependency to your `build.gradle` file:
 
@@ -54,11 +54,17 @@ dependencies {
     implementation 'io.grpc:grpc-stub:1.57.1'
     compileOnly 'org.apache.tomcat:annotations-api:6.0.53'
     // for GaSDK and ItsSDK
-    implementation 'com.rudderstack.android.sdk:core:1.25.1'
     implementation("com.google.android.play:review:2.0.1")
+    //
+    implementation 'androidx.core:core:1.10.1'
+    implementation "net.zetetic:sqlcipher-android:4.5.6@aar"
+    implementation "androidx.sqlite:sqlite:2.3.1"
+    implementation 'androidx.lifecycle:lifecycle-process:2.6.1'
+    implementation 'androidx.lifecycle:lifecycle-common:2.6.1'
     implementation 'androidx.browser:browser:1.8.0'
-    api files('libs/gasdk.aar')
-    api files('libs/its-sdk.aar')
+    implementation 'com.rudderstack.android.sdk:core:1.25.1'
+    implementation files('libs/gasdk.aar')
+    implementation files('libs/its-sdk.aar')
 }
 ```	
 **-Move config file (google-services.json) into the module (app-level) root directory of your app.**
@@ -189,71 +195,11 @@ public void call_billing()
 ```
 USAGE TRACKING
 --------------------
-GaSdk supports 2 types of tracking event logs:
-- Automation tracking based on the life cycle of the application including:
-    + Application Installed
-    + Application Opened
-    + Application Updated
-    + Application Backgrounded
-- Recommended gaming app events:
-
+The SDK supports tracking in-app events. To use it, you need to implement the `GItsTrackingManager` module. For detailed information, refer to the code example below.
 ```java
-// Very Install event
-// The event is called automatically when the SDK is integrated into the application, you don't need to call it actively
-GTrackingManger.getInstance().trackingShowSignInSDK();
-
-// Signin event
-// Events are tracked automatically when the user logs in to the SDK, you don't need to call it directly
-GTrackingManger.getInstance().trackingSignIn(String userId, String username, String email);
-
-// Tracking user created New Roles (Character) event
-GTrackingManger.getInstance().doneNRU(
-        "server_id",
-        "role_id",
-        "Role Name"
-);
-
-// Tracking user enter game event
-GTrackingManger.getInstance().trackEnterGameEvent(String userId, String characterId, String characterName, String serverInfo);
-
-// Tracking user start tutorial event
-GTrackingManger.getInstance().trackingStartTrial();
-
-// Tracking user completes tutorial event
-GTrackingManger.getInstance().trackingTutorialCompleted();
-
-// Tracking user's achieved level
-GTrackingManger.getInstance().level(Integer level);
-
-// Tracking user's VIP level
-GTrackingManger.getInstance().vip(Integer vipLevel);
-
-// Tracking user actitivy result's event
-GTrackingManger.getInstance().trackActivityEvent(String userId, String characterId, String serverInfo, String activitiyID, String activityResult);
-
-// Tracking item is used event
-GTrackingManger.getInstance().trackUseItemEvent(String userId, String characterId, String serverInfo, String itemId, Integer quantity);
-
-// Tracking checkout event
-// Events are tracked automatically when the user checks out in the SDK, you don't need to call it directly
-GTrackingManger.getInstance().checkout(String orderId, String productId, String amount, String currency, String customerId);
-
-// Tracking purchase event
-// Events are tracked automatically when the user checks out in the SDK, you don't need to call it directly
-GTrackingManger.getInstance().purchase(String orderId, String productId, String amount, String currency, String customerId);
-
-// Track logout event
-// Events are tracked automatically when the user logs out of the SDK, you don't need to call it directly
-GTrackingManger.getInstance().trackLogoutEvent();
-
-// Custom Event
-/* Example: 
-jsonContent = {"event": "event_name", "params": {"key": "value", "key2": "value2"} }
-*/
-JSONObject jsonContent = new JSONObject();
-jsonRole.put("character", "CharacterName");
-jsonRole.put("server", "ServerID");        
-GTrackingManger.getInstance().trackingEvent("event_name", jsonContent);
+GTrackingManger.getInstance().completeRegistration("User_id");
+GTrackingManger.getInstance().completeTutorial();
 ```
+For detailed information on tracking events, please refer to the [Tracking Guide](./TRACKING_GUIDE.md).
 
 

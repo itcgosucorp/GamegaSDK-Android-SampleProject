@@ -1,5 +1,5 @@
 {
-  "client_id": "1649.rxsjaxwjfbbkxru",
-  "its_app_write_key": "2p60BzmwTdVxTa56GEbdrXL6Yfp",
-  "its_app_signing_key": "f4dd561f48f94466b6bc13869bc020ac"
+  "client_id": "sample_client_id",
+  "its_app_write_key": "sample_write_key",
+  "its_app_signing_key": "sample_signing_key"
 }
