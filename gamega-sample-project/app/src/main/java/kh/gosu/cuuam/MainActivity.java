@@ -219,25 +219,25 @@ public class MainActivity extends AppCompatActivity {
         String CharName = "CharName_001";
         String OrderID = "OrderID_001";
 
-        GTrackingManger.getInstance().createNewCharacter(ServerID, CharId, CharName);
+        //GTrackingManger.getInstance().createNewCharacter(ServerID, CharId, CharName);
         GTrackingManger.getInstance().enterGame(GameConstant.response_userid, CharId, CharName, ServerID);
-        GTrackingManger.getInstance().startTutorial(GameConstant.response_userid, CharId, CharName, ServerID);
-        GTrackingManger.getInstance().completeTutorial(GameConstant.response_userid, CharId, CharName, ServerID);
-        GTrackingManger.getInstance().checkout(OrderID, "com.toantest.gamega.001", "1000", "VND", GameConstant.response_userid);
-        GTrackingManger.getInstance().purchase(OrderID, "com.toantest.gamega.001", "1000", "VND", GameConstant.response_userid);
-        GTrackingManger.getInstance().level(100);
-        GTrackingManger.getInstance().vip(1);
-        GTrackingManger.getInstance().useItem(GameConstant.response_userid, CharId, ServerID, "ItemID_001", 1);
-        GTrackingManger.getInstance().trackActivityResult(GameConstant.response_userid, CharId, ServerID, "ActivityID_001", "done");
-        try {
-            JSONObject object = new JSONObject();
-            object.put("role_id", "role custom");
-            object.put("data_test", "crash077777");
-            object.put("number_test", 100);
-            GTrackingManger.getInstance().trackCustomEvent("event_toan_custom", object);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        GTrackingManger.getInstance().startTutorial(GameConstant.response_userid, CharId, CharName, ServerID);
+//        GTrackingManger.getInstance().completeTutorial(GameConstant.response_userid, CharId, CharName, ServerID);
+//        GTrackingManger.getInstance().checkout(OrderID, "com.toantest.gamega.001", "1000", "VND", GameConstant.response_userid);
+//        GTrackingManger.getInstance().purchase(OrderID, "com.toantest.gamega.001", "1000", "VND", GameConstant.response_userid);
+//        GTrackingManger.getInstance().level(100);
+//        GTrackingManger.getInstance().vip(1);
+//        GTrackingManger.getInstance().useItem(GameConstant.response_userid, CharId, ServerID, "ItemID_001", 1);
+//        GTrackingManger.getInstance().trackActivityResult(GameConstant.response_userid, CharId, ServerID, "ActivityID_001", "done");
+//        try {
+//            JSONObject object = new JSONObject();
+//            object.put("role_id", "role custom");
+//            object.put("data_test", "crash077777");
+//            object.put("number_test", 100);
+//            GTrackingManger.getInstance().trackCustomEvent("event_toan_custom", object);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
