@@ -77,6 +77,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-common:2.6.1'
     implementation 'androidx.browser:browser:1.8.0'
     implementation 'com.rudderstack.android.sdk:core:1.25.1'
-    implementation files('libs/gasdk_1.1.0.aar')
+    implementation files('libs/gasdk_1.1.1.aar')
     implementation files('libs/its_sdk_1.0.1.aar')
 }
