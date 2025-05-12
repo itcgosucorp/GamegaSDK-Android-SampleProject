@@ -1,5 +1,5 @@
 {
-  "client_id": "sample_client_id",
-  "its_app_write_key": "sample_write_key",
-  "its_app_signing_key": "sample_signing_key"
+  "client_id": "sample_value",
+  "its_app_write_key": "sample_value",
+  "its_app_signing_key": "sample_key"
 }

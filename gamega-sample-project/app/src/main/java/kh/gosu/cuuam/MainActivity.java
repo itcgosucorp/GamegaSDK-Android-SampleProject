@@ -1,6 +1,6 @@
 package kh.gosu.cuuam;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.app.Activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,6 +16,7 @@ import com.gasdk.gstracking.GTrackingManger;
 import com.gasdk.nsdk.inteface.IGameInitListener;
 import com.gasdk.nsdk.inteface.IGameOauthListener;
 import com.gasdk.nsdk.inteface.IGamePaymentListener;
+import com.gasdk.nsdk.inteface.IGameTopupListener;
 import com.gasdk.nsdk.inteface.OnSingleClickListener;
 import com.gasdk.nsdk.object.GameItemIAPObject;
 import com.gasdk.nsdk.utils.GameConstant;
@@ -30,7 +31,7 @@ import java.util.Locale;
 
 import android.app.Activity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends  Activity{
 
     private Button btnDangNhap;
     private Button btnTTTK;
@@ -147,17 +148,21 @@ public class MainActivity extends AppCompatActivity {
         btnTTITEM1.setOnClickListener(new OnSingleClickListener() {
             @Override
             public void onSingleClick(View var1) {
-                String productID = "com.idolnrt.gift.0.99";
-                String mProductName = "Mua gói 100KNB";
-                String currencyUnit = "USD";
-                String amount = "0.99";
-                String serverID = "10001";
-                String characterID = "123457";
-                String characterName = "Character_ID (&%#^Ashjba";
-                String orderID = "Character_ID";
-                String extraInfo = "";
-                GameItemIAPObject gosuItemIAPObject = new GameItemIAPObject(orderID, productID, mProductName, currencyUnit, amount, serverID, characterID, extraInfo);
-                GaSDK.showTopUp(serverID, characterID, characterName);
+//                String productID = "com.idolnrt.gift.0.99";
+//                String mProductName = "Mua gói 100KNB";
+//                String currencyUnit = "USD";
+//                String amount = "0.99";
+                String serverID = "1";
+                String characterID = "10000381";
+                String characterName = "Phiền Diêu Tinh";
+
+                //GameItemIAPObject gosuItemIAPObject = new GameItemIAPObject(orderID, productID, mProductName, currencyUnit, amount, serverID, characterID, extraInfo);
+                GaSDK.showTopUp(serverID, characterID, characterName, new IGameTopupListener() {
+                    @Override
+                    public void onTopupFinish() {
+                        Log.d("TAG", "onTopupFinish");
+                    }
+                });
             }
         });
         btnReview = (Button) findViewById(R.id.btn_show_review);
